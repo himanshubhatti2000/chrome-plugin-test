@@ -1,21 +1,27 @@
 {
-    "manifest_version": 2,
-    "name": "Button Injection Extension",
-    "version": "1.0",
-    "description": "Adds a test button to web pages.",
-    "permissions": ["activeTab"],
-    "background": {
-      "scripts": ["background.js"],
-      "persistent": false
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-    "browser_action": {
-      "default_title": "Inject Button"
+  "manifest_version": 3,
+  "name": "Button Injection Extension",
+  "version": "1.0",
+  "description": "Adds a test button to web pages.",
+  "permissions": ["scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/get_started16.png",
+      "48": "/images/get_started48.png",
+      "128": "/images/get_started128.png"
     }
-  }
-  
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
